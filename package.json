@@ -4,7 +4,7 @@
   "description": "A Discord Bot to call other servers.",
   "main": "index.js",
   "scripts": {
-    "test": "node . --harmony"
+    "run": "node . --harmony"
   },
   "repository": {
     "type": "git",
@@ -30,6 +30,7 @@
     "erlpack": "github:discordapp/erlpack",
     "fs": "0.0.1-security",
     "libsodium-wrappers": "^0.7.6",
+    "mysql": "^2.18.1",
     "node-gyp": "^6.1.0",
     "utf-8-validate": "^5.0.2",
     "zlib-sync": "^0.1.6"

@@ -37,14 +37,14 @@ setInterval(function () {
 // Events
 try {
     // Client Events
-    client.on('ready', async () => reqEvent('Client', 'ready')(client, config));
-    client.on('message', async (msg) => reqEvent('Client', 'message')(client, config, msg));
-    client.on('disconnect', async () => reqEvent('Client', 'disconnect')(client));
-    client.on('reconnecting', async () => reqEvent('Client', 'reconnecting')(client));
+    client.on('ready', async () => evnt('Client', 'ready')(client, config));
+    client.on('message', async (msg) => evnt('Client', 'message')(client, config, msg));
+    client.on('disconnect', async () => evnt('Client', 'disconnect')(client));
+    client.on('reconnecting', async () => evnt('Client', 'reconnecting')(client));
 
     // Guild Events
-    client.on('guildCreate', async (guild) => reqEvent('Guild', 'guildCreate')(client, config, guild));
-    client.on('guildDelete', async (guild) => reqEvent('Guild', 'guildDelete')(client, config, guild));
+    client.on('guildCreate', async (guild) => evnt('Guild', 'guildCreate')(client, config, guild));
+    client.on('guildDelete', async (guild) => evnt('Guild', 'guildDelete')(client, config, guild));
 } catch (err) {
     console.log(chalk.bgRed('ERROR') + ' Unable To Load Event!\n' + err);
 }

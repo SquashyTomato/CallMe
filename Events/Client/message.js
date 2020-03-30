@@ -16,18 +16,23 @@ module.exports = (client, config, msg) => {
 
     if (!msg.content.startsWith(config.general.prefix)) {
         conn.getConnection(function (err, con) {
-            con.query("SELECT * FROM `servers` WHERE `id` = " + msg.guild.id, function (err, resultSrv) {
-                if (resultSrv[0].status > 1 && msg.channel.id == resultSrv[0].channel) {
-                    con.query("SELECT * FROM `sessions` WHERE " + msg.guild.id + " IN(`server1`, `server2`)", function (err, resultSess) {
-                        if (resultSess[0].length > 0) {
-                            let sendingTo = client.channels.get(resultSrv[0].channel);
-                            sendingTo.send('<' + config.misc.emote + '> | **' + msg.author.username + '**#' + msg.author.tag + ': ' + msg.content);
-                            return;
-                        }
-                    });
-                } else {
-                    return;
-                }
+            // Check Setup & Call Channel
+            con.query("SELECT * FROM `servers` WHERE `id` = " + msg.guild.id, function (err, result) {
+                if (!(result[0].channel == msg.channel.id)) return;
+
+                // Check If In Existing Session Slot
+                con.query("SELECT * FROM `sessions` WHERE " + msg.channel.id + " IN(`server1`, `server2`)", function (err, result) {
+                    if (result.length > 0) {
+                        let sendTo;
+                        if (result[0].server1 === msg.channel.id) sendTo = result[0].server2;
+                        else sendTo = result[0].server1;
+
+                        let recChannel = client.channels.cache.get(sendTo);
+
+                        if (msg.author.id === config.permissions.owner) return recChannel.send('<' + config.misc.emote + '> | <' + config.misc.devEmote + '> **' + msg.author.username + '**#' + msg.author.discriminator + ': ' + msg.content);
+                        else return recChannel.send('<' + config.misc.emote + '> | **' + msg.author.username + '**#' + msg.author.discriminator + ': ' + msg.content);
+                    }
+                });
             });
         });
     }
@@ -52,14 +57,14 @@ module.exports = (client, config, msg) => {
                 hasPermission = true;
                 break;
             default:
-                if (msg.author.id == config.general.owner) hasPermission = true;
+                if (msg.author.id == config.permissions.owner) hasPermission = true;
                 else if (msg.member.hasPermission(command.permission.toUpperCase(), false, false)) hasPermission = true;
                 alertPrompt = true;
                 break;
         }
 
         if (hasPermission == false) {
-            if (alertPrompt == true) return msg.channel.send(':negative_squared_cross_mark: | You require the `' + command.permission.toUpperCase() + '` permission to do this.').then(m => m.delete(5000).catch(console.error));
+            if (alertPrompt == true) return msg.channel.send(':negative_squared_cross_mark: | You require the `' + command.permission.toUpperCase() + '` permission to do this.');
             else return;
         }
 

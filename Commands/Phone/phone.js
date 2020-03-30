@@ -51,8 +51,11 @@ module.exports = {
                                         setTimeout(function(){
                                             con.query("SELECT * FROM `sessions` WHERE " + msg.channel.id + " IN(`server1`, `server2`)", function (err, resultTimeout) {
                                                 if (resultTimeout.length > 0) {
-                                                    if (resultTimeout[0].status == 1) return msg.channel.send(':no_entry_sign: | Nobody has joined your session, closing...');
-                                                    con.query("UPDATE `sessions` SET `server1` = 0, `server2` = 0, `status` = 0 WHERE `slot` = " + resultFree[0].slot, function (err, result) { if (err) throw err; });
+                                                    if (resultTimeout[0].status == 1) {
+                                                        msg.channel.send(':no_entry_sign: | Nobody has joined your session, closing...');
+                                                        con.query("UPDATE `sessions` SET `server1` = 0, `server2` = 0, `status` = 0 WHERE `slot` = " + resultFree[0].slot, function (err, result) { if (err) throw err; });
+                                                        return;
+                                                    }
                                                 }
                                             });
                                         }, 30000);

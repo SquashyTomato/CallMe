@@ -1,0 +1,37 @@
+{
+  "name": "callme",
+  "version": "1.0.0",
+  "description": "A Discord Bot to call other servers.",
+  "main": "index.js",
+  "scripts": {
+    "test": "node . --harmony"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/SquashyTomato/CallMe.git"
+  },
+  "keywords": [
+    "discord",
+    "bot",
+    "calling",
+    "communication"
+  ],
+  "author": "SquashyTomato",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/SquashyTomato/CallMe/issues"
+  },
+  "homepage": "https://github.com/SquashyTomato/CallMe#readme",
+  "dependencies": {
+    "@discordjs/opus": "^0.1.0",
+    "bufferutil": "^4.0.1",
+    "chalk": "^3.0.0",
+    "discord.js": "^12.1.1",
+    "erlpack": "github:discordapp/erlpack",
+    "fs": "0.0.1-security",
+    "libsodium-wrappers": "^0.7.6",
+    "node-gyp": "^6.1.0",
+    "utf-8-validate": "^5.0.2",
+    "zlib-sync": "^0.1.6"
+  }
+}

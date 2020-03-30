@@ -1,0 +1,22 @@
+{
+    "general": {
+        "token": "",
+        "prefix": "c!"
+    },
+    "database": {
+        "host": "localhost",
+        "port": "3306",
+        "username": "",
+        "password": "",
+        "database": "CallMe",
+        "limit": 1000
+    },
+    "permissions": {
+        "owner": "109738696768516096"
+    },
+    "misc": {
+        "color": "#0B4768",
+        "emote": "694030007189635073",
+        "devEmote": "694224149559902328"
+    }
+}

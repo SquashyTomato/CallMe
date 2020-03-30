@@ -18,7 +18,7 @@ client.commands = new Discord.Collection();
 client.alias = new Discord.Collection();
 
 // SQL Connection
-const conn = mysql.createPool({
+global.conn = mysql.createPool({
 	host: config.database.host,
 	port: config.database.port,
 	user: config.database.username,

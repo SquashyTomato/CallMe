@@ -30,6 +30,8 @@
     "erlpack": "github:discordapp/erlpack",
     "fs": "0.0.1-security",
     "libsodium-wrappers": "^0.7.6",
+    "moment": "^2.24.0",
+    "moment-duration-format": "^2.3.2",
     "mysql": "^2.18.1",
     "node-gyp": "^6.1.0",
     "utf-8-validate": "^5.0.2",

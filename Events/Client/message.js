@@ -29,6 +29,8 @@ module.exports = (client, config, msg) => {
 
                         let recChannel = client.channels.cache.get(sendTo);
 
+                        if (msg.content.length === 1900) return msg.react('❌');
+
                         if (msg.author.id === config.permissions.owner) return recChannel.send('<' + config.misc.emote + '> | <' + config.misc.devEmote + '> **' + msg.author.username + '**#' + msg.author.discriminator + ': ' + msg.content);
                         else return recChannel.send('<' + config.misc.emote + '> | **' + msg.author.username + '**#' + msg.author.discriminator + ': ' + msg.content);
                     }

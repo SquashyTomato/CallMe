@@ -16,7 +16,7 @@ module.exports = {
         // Variables
         let user = client.users.cache.get(msg.author.id);
 
-        msg.channel.send(':gear: | Hey <@' + msg.author + '>! Let\'s get you all set up!\n\nWould you like to use <#' + msg.channel + '> for your CallMe sessions?\ntype `confirm` to apply or `abort` to cancel. (You can run the command again in the appropiate channel if needed!)');
+        msg.channel.send(':gear: | Hey <@' + msg.author + '>! Let\'s get you all set up!\n\nWould you like to use <#' + msg.channel + '> for your CallMe sessions?\nType `confirm` to apply or `abort` to cancel. (You can run the command again in the appropiate channel if needed!)');
 
         // Create Collector
         const collector = new Discord.MessageCollector(msg.channel, m => m.author.id === msg.author.id, { time: 25000 });

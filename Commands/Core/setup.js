@@ -19,13 +19,13 @@ module.exports = {
         msg.channel.send(':gear: | Hey <@' + msg.author + '>! Let\'s get you all set up!\n\nWould you like to use <#' + msg.channel + '> for your CallMe sessions?\ntype `confirm` to apply or `abort` to cancel. (You can run the command again in the appropiate channel if needed!)');
 
         // Create Collector
-        const collector = new Discord.MessageCollector(msg.channel, m => m.author.id === msg.author.id, { time: 10000 });
+        const collector = new Discord.MessageCollector(msg.channel, m => m.author.id === msg.author.id, { time: 25000 });
         collector.on('collect', msg => {
             if (msg.content == 'confirm') {
                 conn.getConnection(function (err, con) {
                     con.query("UPDATE `servers` SET `channel` = " + msg.channel.id + " WHERE `id` = " + msg.guild.id, function (err, result) { if (err) throw err; });
                 });
-                msg.channel.send(':white_check_mark: | Channel is now configured for CallMe sessions! To change the channel just run `' + config.general.prefix + 'setup` again.');
+                msg.channel.send(':white_check_mark: | Channel is now configured for CallMe sessions! Type `' + config.general.prefix + 'phone` to begin calling!\nTo change the channel just type `' + config.general.prefix + 'setup` again.');
                 return;
             } else if (msg.content == 'abort') {
                 return msg.channel.send(':x: | Aborted');

@@ -1,5 +1,7 @@
 # CallMe
-[![Discord](https://discordapp.com/api/guilds/693974762992435241/widget.png)](https://discord.gg/8XtxgAa)
+
+## This repo is no longer maintained as [the new bot](https://ariyabot.xyz) will have this included, this was implemented awfully and my code is horrible, however feel free to use it to learn.
+
 [![Discord.js](https://img.shields.io/badge/discord-js-orange)](https://github.com/discordjs/discord.js)
 [![SemVer](https://img.shields.io/badge/SemVer-Versioning-black)](http://semver.org)
 
